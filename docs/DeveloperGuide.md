@@ -45,6 +45,8 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 <img src="https://raw.githubusercontent.com/AY2021S2-CS2103T-T12-1/tp/master/docs/images/ArchitectureDiagram.png" alt="alt text" width="400">
 
+<div style="page-break-after: always;"></div>
+
 The ***Architecture Diagram*** given above explains the high-level design of the App. Given below is a quick overview of each component.
 
 <div markdown="span" class="alert alert-primary">
@@ -71,9 +73,13 @@ Each of the four components,
 * defines its *API* in an `interface` with the same name as the Component.
 * exposes its functionality using a concrete `{Component Name}Manager` class (which implements the corresponding API `interface` mentioned in the previous point.
 
+<div style="page-break-after: always;"></div>
+
 For example, the `Logic` component (see the class diagram given below) defines its API in the `Logic.java` interface and exposes its functionality using the `LogicManager.java` class which implements the `Logic` interface.
 
 ![Class Diagram of the Logic Component](images/LogicClassDiagram.png)
+
+<div style="page-break-after: always;"></div>
 
 **How the architecture components interact with each other**
 
@@ -82,6 +88,8 @@ The *Sequence Diagram* below shows how the components interact with each other f
 ![Structure of the UI Component](images/ArchitectureSequenceDiagram.png)
 
 The sections below give more details of each component.
+
+<div style="page-break-after: always;"></div>
 
 ### UI component
 
@@ -99,6 +107,8 @@ The `UI` component,
 * Executes user commands using the `Logic` component.
 * Listens for changes to `Model` data so that the UI can be updated with the modified data.
 
+<div style="page-break-after: always;"></div>
+
 ### Logic component
 
 ![Structure of the Logic Component](images/LogicClassDiagram.png)
@@ -107,10 +117,12 @@ The `UI` component,
 [`Logic.java`](https://github.com/AY2021S2-CS2103T-T12-1/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
 
 1. `Logic` uses the `WardrobeParser` class to parse the user command.
-1. This results in a `Command` object which is executed by the `LogicManager`.
-1. The command execution can affect the `Model` (e.g. deleting a garment).
-1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
-1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
+2. This results in a `Command` object which is executed by the `LogicManager`.
+3. The command execution can affect the `Model` (e.g. deleting a garment).
+4. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
+5. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
+
+<div style="page-break-after: always;"></div>
 
 Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")` API call.
 
@@ -119,6 +131,8 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 <div markdown="span" class="alert alert-info">:information_source:  **Note:**  The lifeline for `DeleteCommandParser` 
 should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
+
+<div style="page-break-after: always;"></div>
 
 ### Model component
 
@@ -131,7 +145,7 @@ The `Model`,
 * stores a `UserPref` object that represents the user’s preferences.
 * stores the wardrobe data.
 * exposes an unmodifiable `ObservableList<Garment>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
-* does not depend on any of the other three components.
+* does not depend on any of the other three components.<br><br>
 
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Description` list in the `Wardrobe`, which `Garment` references. This allows `Wardrobe` to only require one `Description` object per unique `Description`, instead of each `Garment` needing their own `Description` object.<br>
@@ -139,7 +153,7 @@ The `Model`,
 ![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
 
 </div>
-
+<div style="page-break-after: always;"></div>
 
 ### Storage component
 
@@ -150,6 +164,8 @@ The `Model`,
 The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
 * can save the wardrobe data in json format and read it back.
+
+<div style="page-break-after: always;"></div>
 
 ### Common classes
 
@@ -193,7 +209,8 @@ The following diagram shows where sorting occurs in the Model component (higher 
     Sorts the Garments based on chronological or reverse chronological ordering of the `LastUse` attribute based on user input.
   * Pros: Allows users to choose which ordering they want, and they can get the respective benefits as above.
   * Cons: Requires more time to implement.
-
+ 
+<div style="page-break-after: always;"></div>
 
 ### Find feature
 
@@ -229,6 +246,8 @@ The object of `AttributesContainsKeywordsPredicate` is passed to an object of `F
 `FindCommand` object is then called with `model`, which then calls the `updateFilteredGarmentList` method of `model`.
 This then displays all matching garments in the data to the front end of the NuFash application.
 
+<div style="page-break-after: always;"></div>
+
 Given below is an example usage scenario of how the `find` mechanism works.
 
 1. The user launches the NuFash application for the first time and is presented with a list of all garments 
@@ -249,6 +268,7 @@ PREFIX_TYPE, PREFIX_DRESSCODE, PREFIX_DESCRIPTION
 The activity diagram below shows the flow of what happens when a user executes the find command:
 ![Find Activity Diagram](images/FindActivityDiagram.png)
 
+<div style="page-break-after: always;"></div>
 
 #### Design Consideration:
 
@@ -283,12 +303,16 @@ MatchCommand is updated to use a find command
 with single or multiple attributes (i.e. `c/` for Colour, `r/` for dressCode and `t/` for type) and the respective 
 predicate is subsequently used to create a FindCommand Object. This is then executed.
 
+<div style="page-break-after: always;"></div>
+
 The following sequence diagram shows how the match operation works:
 ![Match Sequence Diagram](images/MatchSequenceDiagram.png)  
 
 The following activity diagram summarizes what happens when a user
 executes a match command:
 ![Match Activity Diagram](images/MatchActivityDiagram.png)
+
+<div style="page-break-after: always;"></div>
 
 #### Design Consideration:
 
@@ -330,7 +354,9 @@ The LastUse attribute of this garment is instantiated with a null value: `Never`
 by viewing the garments, following which they can use the Select Command by specifying the garment's index.
 The selected garment is duplicated, with the `LastUse` attribute being updated to the current local date.
 The original selected garment with now obsolete `LastUse` attribute is deleted. 
-This signifies to the wardrobe that the user has checked out the garment to be worn today. 
+This signifies to the wardrobe that the user has checked out the garment to be worn today.
+
+<div style="page-break-after: always;"></div>
 
 The following sequence diagram shows how the select operation works:
 
@@ -339,6 +365,8 @@ The following sequence diagram shows how the select operation works:
 The following activity diagram summarizes what happens when a user executes a new command:
 
 ![SelectActivityDiagram](images/SelectActivityDiagram.png)
+
+<div style="page-break-after: always;"></div>
 
 #### Design Consideration
 
@@ -376,6 +404,8 @@ Given below is an example usage scenario and how the View mechanism behaves at e
 
 3. The `view` command indirectly calls updateFilteredGarmentList method of Model with a predicate that filters the selected Garments to be viewed as an outfit.
 
+<div style="page-break-after: always;"></div>
+
 The following sequence diagram shows how the view operation works:
 
 ![ViewSequenceDiagram](images/ViewSequenceDiagram.png)
@@ -383,6 +413,8 @@ The following sequence diagram shows how the view operation works:
 The following activity diagram summarizes what happens when a user executes a new command:
 
 ![ViewActivityDiagram](images/ViewActivityDiagram.png)
+
+<div style="page-break-after: always;"></div>
 
 #### Design consideration:
 
@@ -420,6 +452,8 @@ The following activity diagram summarizes what happens when a user executes a ne
 * Maintain outfit schedules to prevent repetitive dressing
 
 * Receive garment suggestions based on factors such as weather, temperature, or the nature of events the user may be attending
+
+<div style="page-break-after: always;"></div>
 
 ### User stories
 
