@@ -5,8 +5,9 @@ title: Developer Guide
 <p align="center">
   <img src="https://raw.githubusercontent.com/AY2021S2-CS2103T-T12-1/tp/master/docs/images/NuFash-logo.png" alt="logo" width="600">
 </p>
-
 ---
+## Table of Contents
+
 * [Setting up, getting started](#setting-up-getting-started)
 * [Design](#design)
   * [Architecture](#architecture)
@@ -28,14 +29,14 @@ title: Developer Guide
     * [Use cases](#use-cases)
     * [Non-Funtional Requirements](#non-functional-requirements)
     * [Glossary](#glossary)
-
-
-
+    
+    
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
+
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -137,6 +138,8 @@ should end at the destroy marker (X) but due to a limitation of PlantUML, the li
 ### Model component
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
+
+<div style="page-break-after: always;"></div>
 
 **API** : [`Model.java`](https://github.com/AY2021S2-CS2103T-T12-1/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
@@ -329,6 +332,8 @@ executes a match command:
   in the wardrobe, and complements their types.
     * Pros: Can generate a full outfit with one match command.
     * Cons: Difficult to implement.
+
+<div style="page-break-after: always;"></div>
 
 ### Select feature
 
